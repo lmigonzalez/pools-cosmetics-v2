@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        roboto_font: ['Roboto', "sans-serif"]
+      },
       colors: {
         dark: '#222831',
         light: '#ffffff',
