@@ -24,8 +24,8 @@ export const getProducts = () => {
   return instance.get('/get-products');
 };
 
-export const getProductById = (productId) => {
-  return instance.get(`/get-products/${productId}`);
+export const fetchProductById = (productId) => {
+  return instance.get(`/get-product-by-id/${productId}`);
 };
 
 export const createProduct = () => {

@@ -1,25 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Hero_Img from '../assets/hero-img.jpg';
-import { getCategories } from '../api/api';
+import { globalState } from '../store/globalStore';
 
-import { useStateContext } from '../context/StateContext';
+import CategoryCard from '../components/clientComponents/CategoryCard';
 
 const Home = () => {
-  const {categories, setCategories, setProducts} = useStateContext()
-  console.log(categories)
+  const { categories, getCategories } = globalState((state) => state);
 
   useEffect(() => {
-    getCategories()
-    .then((res) =>{
-      console.log(res)
-      setCategories(res.data)
-
-    }).catch((err) =>{
-      console.log(err)
-    })
+    getCategories();
   }, []);
-
-
 
   return (
     <div>
@@ -38,32 +28,21 @@ const Home = () => {
         </div>
       </div>
 
-      <div>
+      <div className="default-container pt-10 pb-28">
         <h2 className="text-center text-4xl font-semibold mb-10">Categories</h2>
         <div className="px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 place-items-center ">
-          {categories.map((item, index) => {
-            return (
-              <div className="relative h-80 w-full max-w-[300px] bg-white rounded hover:drop-shadow-lg transition-all">
-                <div className="absolute top-0 right-0 px-4 py-2 rounded-tr bg-dark_blue text-white">
-                  A
-                </div>
-                <div className="flex justify-center w-full h-3/5">
-                  <img src={item.imageUrl} alt="" className="w-auto h-auto" />
-                </div>
-                <div className="relative bg-white h-2/5 flex justify-center items-start">
-                  <p className="mt-4 text-xl">Category Name</p>
-                  <div
-                    className="absolute bottom-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-"
-                  >
-                    <button className="bg-dark_blue text-white px-4 py-2 rounded-md">
-                      Products
-                    </button>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {categories.length > 0 &&
+            categories.map((item, index) => {
+              return (
+                <CategoryCard
+                  key={index}
+                  imageUrl={item.imageUrl}
+                  categoryLetter={item._doc.letter}
+                  categoryName={item._doc.name}
+                  categoryId={item._doc._id}
+                />
+              );
+            })}
         </div>
       </div>
     </div>
