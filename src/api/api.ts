@@ -1,7 +1,9 @@
-import axios from 'axios';
+import axios from "axios";
+import { date, z } from "zod";
+
 
 const instance = axios.create({
-  baseURL: 'http://pools-cosmetics.up.railway.app/api',
+  baseURL: "http://pools-cosmetics.up.railway.app/api",
 });
 
 // Category
@@ -11,17 +13,17 @@ export const getCategories = () => {
 };
 
 export const createCategory = () => {
-  return instance.post('/create-category');
+  return instance.post("/create-category");
 };
 
 export const deleteCategory = () => {
-  return instance.delete('/delete-category');
+  return instance.delete("/delete-category");
 };
 
 // Product
 
 export const getProducts = () => {
-  return instance.get('/get-products');
+  return instance.get("/get-products");
 };
 
 export const fetchProductById = (productId) => {
@@ -29,33 +31,33 @@ export const fetchProductById = (productId) => {
 };
 
 export const createProduct = () => {
-  return instance.post('/create-product');
+  return instance.post("/create-product");
 };
 
 export const deleteProduct = () => {
-  return instance.delete('/delete-product');
+  return instance.delete("/delete-product");
 };
 
 export const updateProduct = () => {
-  return instance.put('/edit-product');
+  return instance.put("/edit-product");
 };
 
 export const updateProductStatus = () => {
-  return instance.put('/toggle-product');
+  return instance.put("/toggle-product");
 };
 
 // Orders
 
 export const getOrders = () => {
-  return instance.get('/get-orders');
+  return instance.get("/get-orders");
 };
 
 export const createOrder = () => {
-  return instance.post('/create-order');
+  return instance.post("/create-order");
 };
 
 // Mail
 
 export const sendMessage = () => {
-  return instance.post('/send-message');
+  return instance.post("/send-message");
 };
