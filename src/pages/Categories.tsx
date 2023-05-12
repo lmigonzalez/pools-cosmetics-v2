@@ -16,10 +16,10 @@ const Categories = () => {
     .map((item, index) => {
       return (
         <CategoryCard
-          imageUrl={item.img}
-          categoryLetter={item.letter}
-          categoryName={item.name}
-          categoryId={item.id}
+          imageUrl={item.imageUrl}
+          categoryLetter={item._doc.letter}
+          categoryName={item._doc.name}
+          categoryId={item._doc._id}
           key={index}
         />
       );

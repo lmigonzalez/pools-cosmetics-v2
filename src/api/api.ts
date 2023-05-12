@@ -1,5 +1,6 @@
 import axios from "axios";
-import { date, z } from "zod";
+import { date, z,ZodSchema } from "zod";
+import { responseCategorySchema, responseProductSchema } from "../Schemas/responses";
 
 
 const instance = axios.create({
@@ -8,8 +9,9 @@ const instance = axios.create({
 
 // Category
 
-export const getCategories = () => {
-  return instance.get('/get-categories');
+export const getCategories = async () => {
+  const res = await instance.get('/get-categories');
+  return responseCategorySchema.parse(res.data)
 };
 
 export const createCategory = () => {
@@ -22,8 +24,9 @@ export const deleteCategory = () => {
 
 // Product
 
-export const getProducts = () => {
-  return instance.get("/get-products");
+export const getProducts = async() => {
+  const res = await instance.get("/get-products");
+  return responseProductSchema.parse(res.data)
 };
 
 export const fetchProductById = (productId) => {
