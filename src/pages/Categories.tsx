@@ -4,7 +4,7 @@ import CategoryCard from "../components/clientComponents/CategoryCard";
 import BackButton from "../components/globalComponents/BackButton";
 import { globalState } from "../store/globalStore";
 const Categories = () => {
-  const { categories } = globalState((state) => state);
+  const { categories } = globalState();
   // pagination
   const [pageNumber, setPageNumber] = useState(0);
 
