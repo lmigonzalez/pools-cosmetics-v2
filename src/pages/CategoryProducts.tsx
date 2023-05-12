@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import BackButton from '../components/globalComponents/BackButton';
-import ReactPaginate from 'react-paginate';
-import { globalState } from '../store/globalStore';
-import ProductCard from '../components/clientComponents/ProductCard';
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+import BackButton from "../components/globalComponents/BackButton";
+import ReactPaginate from "react-paginate";
+import { globalState } from "../store/globalStore";
+import ProductCard from "../components/clientComponents/ProductCard";
 const CategoryProducts = () => {
   const { products } = globalState((state) => state);
   const location = useLocation();
-  const categoryId = location.pathname.split('/').at(-1).split('-').at(0);
+  const path = location.pathname.split("/");
+  const relativePath = path[path.length - 1];
+  const categoryId = relativePath.split("-")[0];
   const productsInCategory = products.filter(
     (item) => item._doc?.categoryId === categoryId
   );
@@ -21,10 +23,9 @@ const CategoryProducts = () => {
   const selectedProducts = productsInCategory
     .slice(pagesVisited, pagesVisited + productsPerPage)
     .map((item, index) => {
-   
       return (
         <ProductCard
-          imageUrl={item?.pictures[0]}
+          imageUrl={item?.pictures[0].fileUrl}
           id={item?._doc?._id}
           name={item?._doc?.name}
           price={item?._doc?.price}
@@ -85,12 +86,12 @@ const CategoryProducts = () => {
               pageCount={pageCount}
               onPageChange={changePage}
               containerClassName={
-                'flex items-center justify-center space-x-4 mt-8 text-[20px]'
+                "flex items-center justify-center space-x-4 mt-8 text-[20px]"
               }
-              previousLinkClassName={''}
-              nextLinkClassName={''}
-              disabledClassName={'text-[#D8D8D8]'}
-              activeClassName={'bg-blue-400 text-white px-2 py-[2px] rounded'}
+              previousLinkClassName={""}
+              nextLinkClassName={""}
+              disabledClassName={"text-[#D8D8D8]"}
+              activeClassName={"bg-blue-400 text-white px-2 py-[2px] rounded"}
             />
           </div>
         ) : (

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 
 interface Props {
-  imageUrl: object;
+  imageUrl: string;
   id: string;
   name: string;
   price: number;
@@ -26,8 +26,8 @@ const ProductCard: React.FC<Props> = ({
   return (
     <div className="group relative bg-white rounded pt-2 pb-12 px-2 hover:drop-shadow-lg transition-all">
       <div className="flex items-center justify-center">
-        {' '}
-        <img src={imageUrl?.fileUrl} alt="category product" />{' '}
+        {" "}
+        <img src={imageUrl} alt="category product" />{" "}
       </div>
       <div className="mt-0  text-left text-lg ">
         <div className="">
@@ -38,14 +38,14 @@ const ProductCard: React.FC<Props> = ({
               {price
                 .toFixed(2)
                 .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </p>
             <p className="line-through">
               $
               {oldPrice
                 .toFixed(2)
                 .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
             </p>
           </div>
         </div>
