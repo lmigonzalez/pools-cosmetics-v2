@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import ReactPaginate from 'react-paginate';
-import CategoryCard from '../components/clientComponents/categoryCard';
-import BackButton from '../components/globalComponents/BackButton';
-import { globalState } from '../store/globalStore';
+import React, { useState } from "react";
+import ReactPaginate from "react-paginate";
+import CategoryCard from "../components/clientComponents/CategoryCard";
+import BackButton from "../components/globalComponents/BackButton";
+import { globalState } from "../store/globalStore";
 const Categories = () => {
   const { categories } = globalState((state) => state);
   // pagination
@@ -16,10 +16,10 @@ const Categories = () => {
     .map((item, index) => {
       return (
         <CategoryCard
-          imageUrl={item?.imageUrl}
-          categoryLetter={item?._doc?.letter}
-          categoryName={item?._doc?.name}
-          categoryId={item?._doc?._id}
+          imageUrl={item.img}
+          categoryLetter={item.letter}
+          categoryName={item.name}
+          categoryId={item.id}
           key={index}
         />
       );
@@ -75,12 +75,12 @@ const Categories = () => {
               pageCount={pageCount}
               onPageChange={changePage}
               containerClassName={
-                'flex items-center justify-center space-x-4 mt-8 text-[20px]'
+                "flex items-center justify-center space-x-4 mt-8 text-[20px]"
               }
-              previousLinkClassName={''}
-              nextLinkClassName={''}
-              disabledClassName={'text-[#D8D8D8]'}
-              activeClassName={'bg-blue-400 text-white px-2 py-[2px] rounded'}
+              previousLinkClassName={""}
+              nextLinkClassName={""}
+              disabledClassName={"text-[#D8D8D8]"}
+              activeClassName={"bg-blue-400 text-white px-2 py-[2px] rounded"}
             />
           </div>
         ) : (
