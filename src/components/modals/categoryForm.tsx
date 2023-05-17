@@ -1,17 +1,20 @@
 import React from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
+import { getCategories } from "../../api/api";
 
 interface DialogFormProps {
+  categoryId: string;
   isOpen: boolean;
   onClose: () => void;
   onSubmit: (data: FormData) => void;
 }
 
 interface FormData {
-  categoryName: string;
-  categoryLetter: string;
-  categoryImage: File | null;
+  categoryId?: string;
+  categoryName?: string;
+  categoryLetter?: string;
+  categoryImage?: File | null;
 }
 
 const validationSchema = Yup.object().shape({
@@ -30,10 +33,12 @@ const validationSchema = Yup.object().shape({
 });
 
 const CategoryDialogForm: React.FC<DialogFormProps> = ({
+  categoryId,
   isOpen,
   onClose,
   onSubmit,
 }) => {
+
   const initialValues: FormData = {
     categoryName: "",
     categoryLetter: "",

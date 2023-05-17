@@ -18,7 +18,7 @@ export const createCategory = () => {
 };
 
 export const deleteCategory = () => {
-  return instance.delete("/delete-category");
+  return instance.delete("/delete-category");  
 };
 
 // Product
